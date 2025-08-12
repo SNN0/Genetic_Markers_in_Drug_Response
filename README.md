@@ -1,4 +1,4 @@
-\# Analysis of Genetic Features' Impact on Drug Response and Survival
+# Analysis of Genetic Features' Impact on Drug Response and Survival
 
 
 
@@ -6,7 +6,7 @@ This project was developed to analyze the impact of genetic features (Copy Numbe
 
 
 
-\## Project Goal
+## Project Goal
 
 
 
@@ -14,7 +14,7 @@ The main goal of the project is to understand how specific genetic changes affec
 
 
 
-\## Methodology
+## Methodology
 
 
 
@@ -22,21 +22,21 @@ The project integrates genetic data (expression, CNA, mutation) and clinical dat
 
 
 
-\### Key Analysis Steps:
+### Key Analysis Steps:
 
 
 
-1\.  \*\*Data Collection and Preparation:\*\*
+**Data Collection and Preparation:**
 
-&nbsp;   \* Gene expression, CNA, and mutation data are retrieved from TCGA.
+&nbsp;   - Gene expression, CNA, and mutation data are retrieved from TCGA.
 
-&nbsp;   \* Samples are segregated into \*\*sensitive\*\* and \*\*resistant\*\* groups based on drug response.
+&nbsp;   - Samples are segregated into **sensitive** and **resistant** groups based on drug response.
 
-&nbsp;   \* Gene symbols are standardized for consistency.
+&nbsp;   - Gene symbols are standardized for consistency.
 
-&nbsp;   \* Patient survival data (overall survival time, vital status) is obtained from TCGA.
+&nbsp;   - Patient survival data (overall survival time, vital status) is obtained from TCGA.
 
-&nbsp;   \* Genetic and clinical data are combined into a single dataset for each cancer/drug combination.
+&nbsp;   - Genetic and clinical data are combined into a single dataset for each cancer/drug combination.
 
 2\.  \*\*Penalized Cox Regression Models:\*\*
 
