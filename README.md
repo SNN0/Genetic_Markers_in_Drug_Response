@@ -28,93 +28,91 @@ The project integrates genetic data (expression, CNA, mutation) and clinical dat
 
 **Data Collection and Preparation:**
 
-&nbsp;   - Gene expression, CNA, and mutation data are retrieved from TCGA.
+   - Gene expression, CNA, and mutation data are retrieved from TCGA.
 
-&nbsp;   - Samples are segregated into **sensitive** and **resistant** groups based on drug response.
+   - Samples are segregated into **sensitive** and **resistant** groups based on drug response.
 
-&nbsp;   - Gene symbols are standardized for consistency.
+   - Gene symbols are standardized for consistency.
 
-&nbsp;   - Patient survival data (overall survival time, vital status) is obtained from TCGA.
+   - Patient survival data (overall survival time, vital status) is obtained from TCGA.
 
-&nbsp;   - Genetic and clinical data are combined into a single dataset for each cancer/drug combination.
+   - Genetic and clinical data are combined into a single dataset for each cancer/drug combination.
 
-2\.  \*\*Penalized Cox Regression Models:\*\*
+**Penalized Cox Regression Models:**
 
-&nbsp;   \* Penalized Cox regression models are created for each gene individually and for gene combinations using the `glmnet` R package.
+   * Penalized Cox regression models are created for each gene individually and for gene combinations using the `glmnet` R package.
 
-&nbsp;   \* Statistical metrics such as Hazard Ratio (HR), p-value, Confidence Interval (CI), Concordance Index (C-Index), and AIC are calculated for each model.
+   * Statistical metrics such as Hazard Ratio (HR), p-value, Confidence Interval (CI), Concordance Index (C-Index), and AIC are calculated for each model.
 
-&nbsp;   \* P-values are obtained using the bootstrapping method.
+   * P-values are obtained using the bootstrapping method.
 
-3\.  \*\*Kaplan-Meier Survival Analysis:\*\*
+**Kaplan-Meier Survival Analysis:**
 
-&nbsp;   \* Kaplan-Meier curves are plotted to visualize survival rates for statistically significant genes or interactions.
+   * Kaplan-Meier curves are plotted to visualize survival rates for statistically significant genes or interactions.
 
-4\.  \*\*Visualization:\*\*
+**Visualization:**
 
-&nbsp;   \* Bar plots are created to compare C-Index values.
+   * Bar plots are created to compare C-Index values.
 
-&nbsp;   \* Bar plots are created to show Hazard Ratios.
+   * Bar plots are created to show Hazard Ratios.
 
-&nbsp;   \* All these plots are combined and arranged into a final figure format for publication.
-
-
-
-\## File Structure
+   * All these plots are combined and arranged into a final figure format for publication.
 
 
 
-\* `functions.R`: This is the main library file containing all the core functions of the project. It includes functions for data processing, model building, and plotting. This file must be sourced before running the project.
-
-\* `coxModel\_ALL.R`: Contains the main workflow for Paclitaxel analysis on a combined dataset of tumor samples (BRCA, HNSC, STAD, LUAD, UCS).
-
-\* `coxModel\_BRCA.R`: Contains the main workflow for Paclitaxel analysis on BRCA (breast cancer) tumor samples.
-
-\* `Cox\_ALL\_5FU.R`: Contains the main workflow for the analysis of 5-Fluorouracil (5-FU) on a combined dataset of tumor samples (STAD, PAAD, ESCA, READ).
-
-\* `Cox\_STAD.R`: Contains the main workflow for the analysis of 5-Fluorouracil (5-FU) on STAD (stomach cancer) tumor samples.
-
-\* `Cox\_PAAD.R`: Contains the main workflow for Gemcitabine analysis on PAAD (pancreatic cancer) tumor samples.
-
-\* `Cox\_ALL\_Gem.R`: Contains the main workflow for Gemcitabine analysis on a combined dataset of tumor samples (PAAD, PCPG, LIHC, LUSC, SARC).
-
-\* `graphs.R`: Loads the `.rds` files of analysis results saved by the `coxModel\_...R` files, adjusts the plot parameters, and combines them to create the final figures.
+## File Structure
 
 
 
-\## Setup and Usage
+* `functions.R`: This is the main library file containing all the core functions of the project. It includes functions for data processing, model building, and plotting. This file must be sourced before running the project.
+
+* `coxModel_ALL.R`: Contains the main workflow for Paclitaxel analysis on a combined dataset of tumor samples (BRCA, HNSC, STAD, LUAD, UCS).
+
+* `coxModel_BRCA.R`: Contains the main workflow for Paclitaxel analysis on BRCA (breast cancer) tumor samples.
+
+* `Cox_ALL_5FU.R`: Contains the main workflow for the analysis of 5-Fluorouracil (5-FU) on a combined dataset of tumor samples (STAD, PAAD, ESCA, READ).
+
+* `Cox_STAD.R`: Contains the main workflow for the analysis of 5-Fluorouracil (5-FU) on STAD (stomach cancer) tumor samples.
+
+* `Cox_PAAD.R`: Contains the main workflow for Gemcitabine analysis on PAAD (pancreatic cancer) tumor samples.
+
+* `Cox_ALL_Gem.R`: Contains the main workflow for Gemcitabine analysis on a combined dataset of tumor samples (PAAD, PCPG, LIHC, LUSC, SARC).
+
+* `graphs.R`: Loads the `.rds` files of analysis results saved by the `coxModel\...R` files, adjusts the plot parameters, and combines them to create the final figures.
 
 
 
-1\.  \*\*Prerequisites:\*\* To run the project, you need a basic R programming environment and the libraries specified in the `functions.R` file (e.g., `TCGAbiolinks`, `glmnet`, `ggplot2`, `survminer`, `cowplot`, `readxl`). You can install the necessary libraries in the R console with the following command:
+## Setup and Usage
 
-&nbsp;   ```R
 
-&nbsp;   install.packages(c("TCGAbiolinks", "glmnet", "survminer", "ggplot2", "cowplot", "readxl", "gridExtra", "gplots", "ggpubr", "ggraph", "stringr", "boot", "dplyr", "tidyverse", "survcomp", "patchwork", "grid", "data.table"))
 
-&nbsp;   ```
+**Prerequisites:** To run the project, you need a basic R programming environment and the libraries specified in the `functions.R` file (e.g., `TCGAbiolinks`, `glmnet`, `ggplot2`, `survminer`, `cowplot`, `readxl`). You can install the necessary libraries in the R console with the following command:
 
-2\.  \*\*File Paths:\*\* At the beginning of each `coxModel\_...R` file, you need to update the data folder path (e.g., `setwd('/path/to/your/CYTOi/Paclitaxel/Expression\_Mutation\_CNA')`) to match your system.
+   ```R
 
-3\.  \*\*Execution:\*\* To start the analyses, first source the `functions.R` file using the `source("functions.R")` command in R Studio or an R console. Then, run the relevant `coxModel\_...R` file to start the analyses. Finally, run the `graphs.R` file to combine all the figures.
+   install.packages(c("TCGAbiolinks", "glmnet", "survminer", "ggplot2", "cowplot", "readxl", "gridExtra", "gplots", "ggpubr", "ggraph", "stringr", "boot", "dplyr", "tidyverse", "survcomp", "patchwork", "grid", "data.table"))
 
-&nbsp;   ```R
+   ```
 
-&nbsp;   # Load the functions.R file
+**File Paths:** At the beginning of each `coxModel\_...R` file, you need to update the data folder path (e.g., `setwd('/path/to/your/CYTOi/Paclitaxel/Expression_Mutation_CNA')`) to match your system.
 
-&nbsp;   source("functions.R")
+**Execution:** To start the analyses, first source the `functions.R` file using the `source("functions.R")` command in R Studio or an R console. Then, run the relevant `coxModel_...R` file to start the analyses. Finally, run the `graphs.R` file to combine all the figures.
 
-&nbsp;   
+```R
 
-&nbsp;   # Run the relevant analysis file (e.g., for Paclitaxel)
+# Load the functions.R file
 
-&nbsp;   source("coxModel\_BRCA.R")
+source("functions.R")
 
-&nbsp;   
 
-&nbsp;   # Run the file that combines all figures
+# Run the relevant analysis file (e.g., for Paclitaxel)
 
-&nbsp;   source("graphs.R")
+source("coxModel\BRCA.R")
 
-&nbsp;   ```
+   
+# Run the file that combines all figures
+
+source("graphs.R")
+
+```
 
